@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Sticker Collection</title>
+</head>
+
+<body>
+
+<h1>My Sticker Collection</h1>
+
+<div id="cards"></div>
+
+<script>
+
+fetch("../data/cards.json")
+.then(response => response.json())
+.then(data => {
+
+  let html = "";
+
+  data.cards.forEach(card => {
+
+    let status = card.owned ? "✔ Owned" : "❌ Missing";
+
+    html += `
+      <div style="border:1px solid #ccc;padding:10px;margin:10px">
+        <b>${card.player}</b><br>
+        Team: ${card.team}<br>
+        Number: ${card.number}<br>
+        Status: ${status}<br>
+        Duplicates: ${card.duplicates}
+      </div>
+    `;
+
+  });
+
+  document.getElementById("cards").innerHTML = html;
+
+});
+
+</script>
+
+</body>
+</html>
