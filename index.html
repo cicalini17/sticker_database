@@ -5,14 +5,35 @@
 <style>
 
 body{
-font-family: Arial;
+font-family:Arial;
+background:#f4f6f8;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,200px);
+gap:20px;
 }
 
 .card{
-border:1px solid #ccc;
+background:white;
+border-radius:10px;
 padding:10px;
-margin:10px;
-width:250px;
+box-shadow:0 3px 8px rgba(0,0,0,0.15);
+text-align:center;
+}
+
+.card img{
+width:100%;
+border-radius:6px;
+}
+
+.owned{
+border:3px solid green;
+}
+
+.missing{
+border:3px solid red;
 }
 
 </style>
@@ -22,34 +43,32 @@ width:250px;
 
 <h1>My Sticker Collection</h1>
 
-<div id="cards"></div>
+<div id="cards" class="grid"></div>
 
 <script>
 
 fetch("data/cards.json")
-.then(response => response.json())
+.then(res => res.json())
 .then(data => {
 
-let html = "";
+let html="";
 
-data.cards.forEach(card => {
+data.cards.forEach(card=>{
 
-let status = card.owned ? "✔ Owned" : "❌ Missing";
+let statusClass = card.owned ? "owned" : "missing";
 
 html += `
-<div class="card">
-<b>${card.player}</b><br>
-Team: ${card.team}<br>
-Collection: ${card.collection}<br>
-Number: ${card.number}<br>
-Status: ${status}<br>
-Duplicates: ${card.duplicates}
+<div class="card ${statusClass}">
+<img src="${card.image}">
+<h3>${card.player}</h3>
+<p>${card.team}</p>
+<p>#${card.number}</p>
 </div>
 `;
 
 });
 
-document.getElementById("cards").innerHTML = html;
+document.getElementById("cards").innerHTML=html;
 
 });
 
