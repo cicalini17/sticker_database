@@ -2,6 +2,20 @@
 <html>
 <head>
 <title>My Sticker Collection</title>
+<style>
+
+body{
+font-family: Arial;
+}
+
+.card{
+border:1px solid #ccc;
+padding:10px;
+margin:10px;
+width:250px;
+}
+
+</style>
 </head>
 
 <body>
@@ -12,29 +26,31 @@
 
 <script>
 
-fetch("../data/cards.json")
+fetch("data/cards.json")
 .then(response => response.json())
 .then(data => {
 
-  let html = "";
+let html = "";
 
-  data.cards.forEach(card => {
+data.cards.forEach(card => {
 
-    let status = card.owned ? "✔ Owned" : "❌ Missing";
+let status = card.owned ? "✔ Owned" : "❌ Missing";
 
-    html += `
-      <div style="border:1px solid #ccc;padding:10px;margin:10px">
-        <b>${card.player}</b><br>
-        Team: ${card.team}<br>
-        Number: ${card.number}<br>
-        Status: ${status}<br>
-        Duplicates: ${card.duplicates}
-      </div>
-    `;
+html += `
+<div class="card">
+<b>${card.player}</b><br>
+Team: ${card.team}<br>
+Collection: ${card.collection}<br>
+Number: ${card.number}<br>
+Status: ${status}<br>
+Duplicates: ${card.duplicates}
+</div>
+`;
 
-  });
+});
 
-  document.getElementById("cards").innerHTML = html;
+document.getElementById("cards").innerHTML = html;
+
 });
 
 </script>
