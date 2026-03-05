@@ -1,0 +1,28 @@
+{
+ "collections": [
+  {
+   "id": "ucl_2024",
+   "name": "Topps Champions League",
+   "year": 2024
+  },
+  {
+   "id": "wc_2022",
+   "name": "Panini World Cup",
+   "year": 2022
+  }
+ ],
+
+ "cards": [
+  {
+   "id": "ucl_1",
+   "collection": "ucl_2024",
+   "number": "1",
+   "player": "Erling Haaland",
+   "team": "Manchester City",
+   "owned": true,
+   "duplicates": 1,
+   "trade": true,
+   "image": null
+  }
+ ]
+}
