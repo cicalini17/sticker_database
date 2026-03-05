@@ -1,0 +1,19 @@
+import requests
+from bs4 import BeautifulSoup
+
+url="https://www.laststicker.com/cards/panini_world_cup_2026_adrenalyn_xl/"
+
+html=requests.get(url).text
+soup=BeautifulSoup(html,"html.parser")
+
+cards=[]
+
+for row in soup.select("table tr"):
+    cols=row.find_all("td")
+    if len(cols)>1:
+        cards.append({
+            "number":cols[0].text.strip(),
+            "name":cols[1].text.strip()
+        })
+
+print(cards)
